@@ -49,9 +49,17 @@ class Snake:
 
 
     def generate_treat(self):
-        return [random.randint(4, BOARD_SIZE_Y - 2), random.randint(1, BOARD_SIZE_X - 3)]
+        good_treat = False
+        while not good_treat:
+            treat_x = random.randint(4, BOARD_SIZE_Y - 2)
+            treat_y = random.randint(1, BOARD_SIZE_X - 3)
+            good_treat = True
+            for cell in snake.cells:
+                if cell.position_x == treat_y and cell.position_y == treat_x:
+                    good_treat = False
+        return [treat_x, treat_y]
 
-
+    
     def add_treat(self, treat):
         treat_x, treat_y = treat
         self.board[treat_x][treat_y] = '*'
