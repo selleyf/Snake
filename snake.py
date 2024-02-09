@@ -210,19 +210,22 @@ if __name__ == "__main__":
     keyboard.add_hotkey('down arrow', lambda: snake.keyboard_callback('down', treat_there))
 
     starting_snake = [SnakeCell(i, 7, 'R', '─') for i in range(2, 8)]
-    snake = Snake(starting_snake)
+    speed = 0
+    acceleration = 0.02
+    max_speed = 20
     
     while snake_alive:
         snake.create_empty_board()
         if not treat_there:
             treat = snake.generate_treat()
+            speed += 1
         snake.add_treat(treat)
         if snake.is_alive():
             snake.add_snake('alive')
         else:
             snake.add_snake('dead')
         snake.print_board()
-        sleep(0.3)
+        sleep(0.5 - min(speed, max_speed)*acceleration)
         treat_there = snake.treat_is_there()
         snake.move_snake(treat_there)
         snake_alive = snake.is_alive()
