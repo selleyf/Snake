@@ -72,10 +72,11 @@ class Snake:
 
     
     def treat_is_eaten(self, treat):
+        eat_third = self.cells[-3].position_x == treat[1] and self.cells[-3].position_y == treat[0]
         eat_second = self.cells[-2].position_x == treat[1] and self.cells[-2].position_y == treat[0]
         eat_first = self.cells[-1].position_x == treat[1] and self.cells[-1].position_y == treat[0]
-        
-        return eat_first or eat_second
+
+        return eat_first or eat_second or eat_third
     
 
     def move_snake(self, treat_there):
