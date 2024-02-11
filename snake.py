@@ -208,6 +208,8 @@ class Snake:
 
 
 if __name__ == "__main__":
+
+    snake = Snake(starting_snake)
     
     snake_alive = True
     treat_there = False
